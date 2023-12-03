@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  hfdlsp:
+    build: ./src
+    command: gunicorn HFDLSP.wsgi:application --bind 0.0.0.0:8080
+    container_name: hfdlsp
+    environment:
+    - SECRET_KEY=${DJANGO_SECRET_KEY}
+    - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+    - DEBUG=${DEBUG}
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - hfdlsp
