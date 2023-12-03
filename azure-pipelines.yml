@@ -58,26 +58,22 @@ stages:
             pip install -r src/requirements.txt
           failOnStderr: true
         displayName: Install Requirements
-
       - task: CmdLine@2
         inputs:
           script: 'flake8 --ignore=E501,F401 src/.'
           failOnStderr: true
         displayName: Run Linter
-
       - task: CmdLine@2
         inputs:
           script: |
             python3 src/manage.py test --testrunner xmlrunner.extra.djangotestrunner.XMLTestRunner --no-input
         condition: succeededOrFailed()
         displayName: Run Test
-
       - task: PublishTestResults@2
         inputs:
           testResultsFiles: "**/TEST-*.xml"
           testRunTitle: '$(Build.DefinitionName)'
         condition: succeededOrFailed()
-
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.SourcesDirectory)'
@@ -147,7 +143,7 @@ stages:
         displayName: Generate release note for $(Build.DefinitionName)
       - task: GitHubRelease@1
         inputs:
-          gitHubConnection: 'github.com_imaleek'
+          gitHubConnection: 'github.com_trenches'
           repositoryName: '$(Build.Repository.Name)'
           action: 'create'
           target: '$(Build.SourceVersion)'
