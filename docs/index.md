@@ -2,7 +2,7 @@
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-## Code Annotation Examples
+## Here are some Code Annotation Examples
 
 ### Codeblocks
 
