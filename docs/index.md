@@ -1,6 +1,7 @@
 # Welcome to HFDLSP
 
-## Here are some Code Annotation Examples you may need to format your work
+## Examples
+Here are some Code Annotation Examples you may need to format your work
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
