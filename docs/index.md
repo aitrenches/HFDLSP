@@ -8,8 +8,7 @@ The Pipeline Project is built in a comprehensive modular pattern such that futur
 ### Architecture
 An architecture that seamlessly provides a unified way to access the Hugging Face Datasets library, download and store the datasets, query and return data. Using a framework in which components for data retrieval, transformation, and integration into any platform will be created, and from which Users, LLMs, and AGI can assess the Knowledge Graphs.
 
-![image](https://github.com/aitrenches/HFDLSP/assets/97749029/adc1219f-4c0d-489a-9418-1c1f8a30be57)
-
+![pipeline drawio (1)](https://github.com/aitrenches/HFDLSP/assets/97749029/53203130-abd6-49ec-a10c-5b5dabb491f1)
 
 ### Data Retrieval Component
 Users seamlessly integrate their Neo4j database instance by configuring it as an environment variable in the Django application. Through a Django command, a Python script retrieves the specified dataset, ensuring its integration into the user's Neo4j database instance.
