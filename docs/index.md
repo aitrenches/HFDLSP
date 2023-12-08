@@ -46,6 +46,6 @@ Users seamlessly integrate their Neo4j database instance by configuring it as an
 - Facilitates the development of a flexible error logging system, offering users the flexibility to integrate their preferred logging service seamlessly.
 
 ## Links
-- Dev environment: [website link](https://github.com/aitrenches/HFDLSP).
+- Dev environment: [website link](http://3.143.68.225/).
 - Documentation resource: [DOCS](https://aitrenches.github.io/HFDLSP/).
 - Project repository: [HFDLSP](https://github.com/aitrenches/HFDLSP).
