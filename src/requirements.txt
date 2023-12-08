@@ -1,2 +1,4 @@
-Django==4.2.3
+Django==5.0
+neomodel===5.1.0
+django-neomodel===0.1.1
 gunicorn==21.2.0
