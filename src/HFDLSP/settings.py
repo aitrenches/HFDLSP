@@ -30,9 +30,15 @@ DEBUG = bool(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
 
 # Neo4js Settings
-NEOMODEL_NEO4J_BOLT_URL = "bolt://localhost:7687"  # Update with your Neo4j URL
-NEOMODEL_NEO4J_BOLT_USER = "neo4j"  # Update with your Neo4j username
-NEOMODEL_NEO4J_BOLT_PASSWORD = "password"  # Update with your Neo4j password
+NEOMODEL_NEO4J_BOLT_URL = os.getenv(
+    "NEO4J_DATABASE_URL", "bolt://localhost:7687"
+)  # Update with your Neo4j URL
+NEOMODEL_NEO4J_BOLT_USER = os.getenv(
+    "NEO4J_DATABASE_USERNAME", "neo4j"
+)  # Update with your Neo4j username
+NEOMODEL_NEO4J_BOLT_PASSWORD = os.getenv(
+    "NEO4J_DATABASE_PASSWORD", "password"
+)  # Update with your Neo4j password
 
 
 # Application definition
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_neomodel",
+    "data_retriever",
 ]
 
 MIDDLEWARE = [
