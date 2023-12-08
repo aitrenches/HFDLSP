@@ -5,6 +5,9 @@ The Hugging Face Dataset Pipeline Project is a comprehensive system designed to 
 ### Technical Overview
 The technical architecture of the project comprises a robust pipeline, facilitating a seamless journey for users to convert their questions into actionable responses.
 
+![image](https://github.com/aitrenches/HFDLSP/assets/97749029/adc1219f-4c0d-489a-9418-1c1f8a30be57)
+
+
 ### Data Retrieval Component
 Users seamlessly integrate their Neo4j database instance by configuring it as an environment variable in the Django application. Through a Django command, a Python script retrieves the specified dataset, ensuring its integration into the user's Neo4j database instance.
 
