@@ -20,33 +20,33 @@ Users seamlessly integrate their Neo4j database instance by configuring it as an
 
 
 ### Web API Component
-The Web API component acts as the gateway for users to submit queries and get answers to the fetched dataset. Leveraging an intuitive API, users receive responses in the form of structured JSON, containing the information directly answering their queries.
+- The Web API component acts as the gateway for users to submit queries and get answers to the fetched dataset. Leveraging an intuitive API, users receive responses in the form of structured JSON, containing the information directly answering their queries.
 
 ### Query Transformation Component
-This critical component interprets and structures user queries into Neo4j-compatible queries. The goal is to optimize the interaction between the Web API component and the Neo4j database, facilitating efficient and accurate data retrieval.
+- This critical component interprets and structures user queries into Neo4j-compatible queries. The goal is to optimize the interaction between the Web API component and the Neo4j database, facilitating efficient and accurate data retrieval.
 
 ### Result Processing Component
-Dedicated to providing a cohesive and user-friendly experience, the Result Processing Component ensures that Neo4j responses are parsed into a unified structured format. This step is crucial for presenting the data in an easily understandable manner, directly addressing user queries.
+- Dedicated to providing a cohesive and user-friendly experience, the Result Processing Component ensures that Neo4j responses are parsed into a unified structured format. This step is crucial for presenting the data in an easily understandable manner, directly addressing user queries.
 
 ### Error Logging Component
-Considering user convenience and future scalability, an optional Error Logging Component is envisioned. In its initial form, it provides a straightforward print to the terminal. However, future iterations could evolve into a comprehensive logging system, allowing users to seamlessly integrate their preferred error-logging service.
+- Considering user convenience and future scalability, an optional Error Logging Component is envisioned. In its initial form, it provides a straightforward print to the terminal. However, future iterations could evolve into a comprehensive logging system, allowing users to seamlessly integrate their preferred error-logging service.
 
 ### Technologies
-The project leverages cutting-edge technologies to create a powerful and user-centric solution:
+- The project leverages cutting-edge technologies to create a powerful and user-centric solution:
 
 #### Python (Django): 
-The backbone of the web application, providing a robust and scalable framework.
+- The backbone of the web application, providing a robust and scalable framework.
 
 #### Neo4j with Cypher: 
-Chosen as the graph database to efficiently store and query datasets, ensuring optimal performance. Cypher Shell is a command-line tool that comes with the Neo4j distribution. Cypher is an open-source, property-graph query language designed for querying graph databases. It uses a declarative syntax to express complex queries in a concise and readable way.
+- Chosen as the graph database to efficiently store and query datasets, ensuring optimal performance. Cypher Shell is a command-line tool that comes with the Neo4j distribution. Cypher is an open-source, property-graph query language designed for querying graph databases. It uses a declarative syntax to express complex queries in a concise and readable way.
 
 #### Huggingface Dataset Python Library:
-Enables smooth interaction with the Hugging Face data platform, simplifying the retrieval and integration of datasets.
+- Enables smooth interaction with the Hugging Face data platform, simplifying the retrieval and integration of datasets.
 
 #### Logging Python Library: 
-Facilitates the development of a flexible error logging system, offering users the flexibility to integrate their preferred logging service seamlessly.
+- Facilitates the development of a flexible error logging system, offering users the flexibility to integrate their preferred logging service seamlessly.
 
 ## Links
-Dev environment: [website link](https://github.com/aitrenches/HFDLSP).
-Documentation resource: [DOCS](https://aitrenches.github.io/HFDLSP/).
-Project repository: [HFDLSP](https://github.com/aitrenches/HFDLSP).
+- Dev environment: [website link](https://github.com/aitrenches/HFDLSP).
+- Documentation resource: [DOCS](https://aitrenches.github.io/HFDLSP/).
+- Project repository: [HFDLSP](https://github.com/aitrenches/HFDLSP).
