@@ -14,4 +14,3 @@ def insert_dataset_into_neo4j(dataset_id, dataset):
         with db.transaction:
             for data in dataset:
                 TreeOfKnowledgeDataset.create(data)
-                # treeOfKnowledge.save()
