@@ -1,6 +1,11 @@
 from django_neomodel import DjangoNode
-from neomodel import StringProperty
+from neomodel import StringProperty, UniqueIdProperty
 
 
 class HuggingFaceDataset(DjangoNode):
-    name = StringProperty(unique_index=True)
+    uid = UniqueIdProperty()
+
+
+class TreeOfKnowledgeDataset(HuggingFaceDataset):
+    instruction = StringProperty()
+    output = StringProperty()

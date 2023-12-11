@@ -1,17 +1,17 @@
 from datasets import load_dataset
+from neomodel import db
+from .models import TreeOfKnowledgeDataset
 
 
 def fetch_huggingface_dataset(dataset_id):
-    if dataset_id == "wikipedia":
-        try:
-            dataset = load_dataset("roneneldan/TinyStories")
-            return dataset
-        except Exception as e:
-            print(e)
-    elif dataset_id == "roneneldan/TinyStories":
-        try:
-            dataset = load_dataset("roneneldan/TinyStories")
-            return dataset
-        except Exception as e:
-            print(e)
-    return None
+    if dataset_id == "fblgit/tree-of-knowledge":
+        dataset = load_dataset(dataset_id, split="train")
+        return dataset
+
+
+def insert_dataset_into_neo4j(dataset_id, dataset):
+    if dataset_id == "fblgit/tree-of-knowledge":
+        with db.transaction:
+            for data in dataset:
+                TreeOfKnowledgeDataset.create(data)
+                # treeOfKnowledge.save()

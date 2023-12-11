@@ -33,12 +33,6 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
 NEOMODEL_NEO4J_BOLT_URL = os.getenv(
     "NEO4J_DATABASE_URL", "bolt://localhost:7687"
 )  # Update with your Neo4j URL
-NEOMODEL_NEO4J_BOLT_USER = os.getenv(
-    "NEO4J_DATABASE_USERNAME", "neo4j"
-)  # Update with your Neo4j username
-NEOMODEL_NEO4J_BOLT_PASSWORD = os.getenv(
-    "NEO4J_DATABASE_PASSWORD", "password"
-)  # Update with your Neo4j password
 
 
 # Application definition
