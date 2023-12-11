@@ -10,7 +10,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "--dataset",
             type=str,
-            help="Hugging Face dataset (default: wikipedia)",
+            help="Hugging Face dataset",
         )
 
     def handle(self, *args, **kwargs):
