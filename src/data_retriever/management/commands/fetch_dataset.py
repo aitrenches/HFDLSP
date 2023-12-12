@@ -22,15 +22,19 @@ class Command(BaseCommand):
                 self.style.ERROR(f"No such dataset: {dataset_name}")
             )
 
+        self.stdout.write(self.style.NOTICE(f"Fetching dataset: {dataset_name}"))
         try:
             dataset = fetch_huggingface_dataset(dataset_id)
         except Exception as e:
             return self.stderr.write(f"Unable to fetch dataset: {self.style.ERROR(e)}")
 
+        self.stdout.write(
+            self.style.NOTICE(f"Inserting dataset: {dataset_name} into Neo4j")
+        )
         try:
             insert_dataset_into_neo4j(dataset_id, dataset)
         except Exception as e:
-            return self.stderr.write(f"Unable to save dataset: {self.style.ERROR(e)}")
+            return self.stderr.write(f"Unable to insert dataset: {self.style.ERROR(e)}")
 
         self.stdout.write(
             self.style.SUCCESS(
