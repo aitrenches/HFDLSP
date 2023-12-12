@@ -104,7 +104,7 @@ stages:
                   dockerComposeFile: '$(Pipeline.Workspace)/$(Build.DefinitionName)/docker-compose.yml'
                   projectName: '$(Build.DefinitionName)'
                   action: 'Run a Docker Compose command'
-                  dockerComposeCommand: 'up --detach'
+                  dockerComposeCommand: 'up --detach --force-recreate --build'
                 displayName: Deploy $(Build.DefinitionName) to Dev
 
   - stage: Release
