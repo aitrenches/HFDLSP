@@ -1,6 +1,14 @@
 version: '3.8'
 
 services:
+  neo4j:
+    image: neo4j:5.14.0
+    container_name: neo4j
+    environment:
+      - NEO4J_AUTH=${NEO4J_AUTH}
+    volumes:
+      - neo4jdata:/data
+    restart: unless-stopped
   hfdlsp:
     build: ./src
     command: gunicorn HFDLSP.wsgi:application --bind 0.0.0.0:8080
@@ -8,11 +16,25 @@ services:
     environment:
     - SECRET_KEY=${DJANGO_SECRET_KEY}
     - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+    - NEO4J_DATABASE_URL=${NEO4J_DATABASE_URL}
     - DEBUG=${DEBUG}
+    restart: unless-stopped
+    depends_on:
+      - neo4j
   nginx:
     build: ./nginx
     container_name: nginx
     ports:
       - 80:80
+      - 443:443
+    volumes:
+      - le-config:/etc/letsencrypt
+      - le-workdir:/var/lib/letsencrypt
+      - le-logs:/var/log/letsencrypt
+    tmpfs: [/run, /tmp, /var/cache/nginx]
+    restart: unless-stopped
     depends_on:
       - hfdlsp
+
+volumes:
+  neo4jdata:
