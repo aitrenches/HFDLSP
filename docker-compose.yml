@@ -32,9 +32,13 @@ services:
       - le-workdir:/var/lib/letsencrypt
       - le-logs:/var/log/letsencrypt
     tmpfs: [/run, /tmp, /var/cache/nginx]
+    read_only: false
     restart: unless-stopped
     depends_on:
       - hfdlsp
 
 volumes:
   neo4jdata:
+  le-config:
+  le-workdir:
+  le-logs:
