@@ -11,3 +11,9 @@
 
 - Select a dataset from the list of datasets, and add it to your Neo4j database by running `python3 src/manage.py fetch_dataset --dataset <dataset-name>`
 - Verify that the dataset has been added to your database.
+
+### Available Datasets
+
+- `wikipedia`
+- `tree-of-knowledge`
+- `hotpot_qa`
