@@ -1,17 +1,17 @@
-from datasets import load_dataset, load_metric
+from datasets import load_dataset
 from neomodel import db
 from .models import TreeOfKnowledgeDataset, HotpotQADataset, WikipediaDataset
 
 
 def fetch_huggingface_dataset(dataset_id):
     if dataset_id == "wikipedia":
-        return load_dataset("wikimedia/wikipedia", "20231101.en")
+        return load_dataset("wikimedia/wikipedia", "20231101.en", split="train")
 
     if dataset_id == "fblgit/tree-of-knowledge":
         return load_dataset(dataset_id, split="train")
 
     if dataset_id == "hotpot_qa":
-        return load_dataset(dataset_id, "distractor")
+        return load_dataset(dataset_id, "distractor", split="train")
 
 
 def insert_dataset_into_neo4j(dataset_id, dataset):
