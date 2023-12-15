@@ -1,6 +1,6 @@
 site_name: Hugging Face Datasets Library Pipeline Documentation Resource
 # site_url: https://github.com/aitrenches/HFDLSP
-site_url: https://trenches.ai/docs
+site_url: https://hfdlsp.trenches.ai/
 theme:
   name: material
   features:
