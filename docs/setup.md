@@ -1,6 +1,6 @@
 ## Documentation
 
-### Initial Project Setup
+## Initial Project Setup
 
 - Create a Neo4j database instance.
 - Clone the project on Github
@@ -17,3 +17,7 @@
 - `wikipedia`
 - `tree-of-knowledge`
 - `hotpot_qa`
+
+## Start the server
+
+Start the app server by running `python3 src/manage.py startapp`.
