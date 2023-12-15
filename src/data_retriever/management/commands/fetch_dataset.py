@@ -18,19 +18,27 @@ class Command(BaseCommand):
         dataset_id = DATASET_IDS.get(dataset_name)
 
         if not dataset_id:
-            return self.stderr.write(
-                self.style.ERROR(f"No such dataset: {dataset_name}")
-            )
+            return self.stderr.write(f"No such dataset: {dataset_name}")
 
+        self.stdout.write(f"Fetching dataset: {dataset_name}")
         try:
             dataset = fetch_huggingface_dataset(dataset_id)
         except Exception as e:
-            return self.stderr.write(f"Unable to fetch dataset: {self.style.ERROR(e)}")
+            return self.stdout.write(f"Unable to fetch dataset: {self.style.ERROR(e)}")
+
+        self.stdout.write(
+            f"The dataset size is: {dataset.data.nbytes / 1e9} GB. Do you want to continue? [y/N]]"
+        )
+
+        if input("").lower() != "y":
+            return self.stdout.write(self.style.NOTICE("Operation cancelled."))
+
+        self.stdout.write(f"Inserting dataset: {dataset_name} into Neo4j")
 
         try:
             insert_dataset_into_neo4j(dataset_id, dataset)
         except Exception as e:
-            return self.stderr.write(f"Unable to save dataset: {self.style.ERROR(e)}")
+            return self.stderr.write(f"Unable to insert dataset: {self.style.ERROR(e)}")
 
         self.stdout.write(
             self.style.SUCCESS(
