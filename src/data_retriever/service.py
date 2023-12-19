@@ -12,9 +12,9 @@ def fetch_huggingface_dataset(dataset_id):
 
     if dataset_id == "hotpot_qa":
         return load_dataset(dataset_id, "distractor", split="train")
-    
-    if dataset_id == "timeQA":
-        return load_dataset("hugosousa/TimeQA")
+
+    if dataset_id == "time_qa":
+        return load_dataset("hugosousa/TimeQA", split="train")
 
 
 def insert_dataset_into_neo4j(dataset_id, dataset):
@@ -32,8 +32,8 @@ def insert_dataset_into_neo4j(dataset_id, dataset):
         with db.transaction:
             for data in dataset:
                 HotpotQADataset.create(data)
-                
-    if dataset_id == "timeQA":
+
+    if dataset_id == "time_qa":
         with db.transaction:
             for data in dataset:
                 TimeQA.create(data)
