@@ -26,3 +26,10 @@ class WikipediaDataset(HuggingFaceDataset):
     title = StringProperty()
     text = StringProperty()
     url = StringProperty()
+
+
+class TimeQA(HuggingFaceDataset):
+    level = StringProperty()
+    question = StringProperty()
+    idx = StringProperty()
+    context = StringProperty()
