@@ -17,6 +17,7 @@
 - `wikipedia`
 - `tree-of-knowledge`
 - `hotpot_qa`
+- `time_qa`
 
 ## Start the server
 
