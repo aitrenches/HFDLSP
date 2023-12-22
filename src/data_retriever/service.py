@@ -4,6 +4,7 @@ from .models import (
     TreeOfKnowledgeDataset,
     HotpotQADataset,
     WikipediaDataset,
+    TimeQA,
     ProgrammingBooksLLMADataset,
 )
 
@@ -20,6 +21,9 @@ def fetch_huggingface_dataset(dataset_id):
 
     if dataset_id == "open-phi/programming-books-llama":
         return load_dataset(dataset_id, split="train")
+
+    if dataset_id == "time_qa":
+        return load_dataset("hugosousa/TimeQA", split="train")
 
 
 def insert_dataset_into_neo4j(dataset_id, dataset):
@@ -42,3 +46,8 @@ def insert_dataset_into_neo4j(dataset_id, dataset):
         with db.transaction:
             for data in dataset:
                 ProgrammingBooksLLMADataset.create(data)
+
+    if dataset_id == "time_qa":
+        with db.transaction:
+            for data in dataset:
+                TimeQA.create(data)

@@ -42,3 +42,10 @@ class ProgrammingBooksLLMADataset(HuggingFaceDataset):
     topic = StringProperty()
     outline = RelationshipTo(ProgrammingBooksLLMOutline, "Outline")
     url = StringProperty()
+
+
+class TimeQA(HuggingFaceDataset):
+    level = StringProperty()
+    question = StringProperty()
+    idx = StringProperty()
+    context = StringProperty()
