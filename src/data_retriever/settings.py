@@ -4,5 +4,4 @@ DATASET_IDS = {
     "hotpot_qa": "hotpot_qa",
     "programming-books-llama": "open-phi/programming_books_llama",
     "time_qa": "hugosousa/TimeQA",
-    "programming-books-llama": "open-phi/programming_books_llama",
 }
