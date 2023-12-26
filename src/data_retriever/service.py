@@ -3,51 +3,53 @@ from neomodel import db
 from .models import (
     TreeOfKnowledgeDataset,
     HotpotQADataset,
-    WikipediaDataset,
-    TimeQA,
-    ProgrammingBooksLLMADataset,
+    TimeQADataset,
 )
+
+from HFDLSP.settings import DATASET_IDS
 
 
 def fetch_huggingface_dataset(dataset_id):
-    if dataset_id == "wikipedia":
-        return load_dataset("wikimedia/wikipedia", "20231101.en", split="train")
-
-    if dataset_id == "fblgit/tree-of-knowledge":
-        return load_dataset(dataset_id, split="train")
+    dataset_name = DATASET_IDS.get(dataset_id)
+    if dataset_id == "tree_of_knowledge":
+        return load_dataset(dataset_name, split="train")
 
     if dataset_id == "hotpot_qa":
-        return load_dataset(dataset_id, "distractor", split="train")
-
-    if dataset_id == "open-phi/programming-books-llama":
-        return load_dataset(dataset_id, split="train")
+        return load_dataset(dataset_name, "distractor", split="train")
 
     if dataset_id == "time_qa":
-        return load_dataset("hugosousa/TimeQA", split="train")
+        return load_dataset(dataset_name, split="train")
 
 
 def insert_dataset_into_neo4j(dataset_id, dataset):
-    if dataset_id == "wikipedia":
+    if dataset_id == "tree_of_knowledge":
         with db.transaction:
             for data in dataset:
-                WikipediaDataset.create(data)
-
-    if dataset_id == "fblgit/tree-of-knowledge":
-        with db.transaction:
-            for data in dataset:
-                TreeOfKnowledgeDataset.create(data)
+                TreeOfKnowledgeDataset.create(
+                    {
+                        "question": data["instruction"],
+                        "answer": data["output"],
+                    }
+                )
 
     if dataset_id == "hotpot_qa":
         with db.transaction:
             for data in dataset:
-                HotpotQADataset.create(data)
-
-    if dataset_id == "open-phi/programming-books-llama":
-        with db.transaction:
-            for data in dataset:
-                ProgrammingBooksLLMADataset.create(data)
+                HotpotQADataset.create(
+                    {
+                        "question": data["question"],
+                        "answer": data["answer"],
+                        "context": data["context"],
+                    }
+                )
 
     if dataset_id == "time_qa":
         with db.transaction:
             for data in dataset:
-                TimeQA.create(data)
+                TimeQADataset.create(
+                    {
+                        "question": data["question"],
+                        "answer": data["targets"],
+                        "context": data["context"],
+                    }
+                )

@@ -1,6 +1,6 @@
 from django.views.decorators.http import require_GET
 from django.http import JsonResponse, HttpResponseBadRequest
-from data_retriever.models import TimeQADataset
+from data_retriever.models import TimeQADataset, HotpotQADataset, TreeOfKnowledgeDataset
 from HFDLSP.settings import DATASET_IDS
 
 
@@ -16,14 +16,22 @@ def answer_view(request):
     if not DATASET_IDS.get(dataset_id):
         return HttpResponseBadRequest({"error": "The dataset ID is invalid."})
 
-    dataset = None
-    if dataset_id == DATASET_IDS["TimeQADataset"]:
+    if dataset_id == "tree_of_knowledge":
+        dataset = TreeOfKnowledgeDataset.objects.get(name=dataset_id).questions.filter(
+            text=user_query
+        )
+        return JsonResponse({"result": dataset[0].answer})
+
+    if dataset_id == "hotpot_qa":
+        dataset = HotpotQADataset.objects.get(name=dataset_id).questions.filter(
+            text=user_query
+        )
+        return JsonResponse({"result": dataset[0].answers.all()[0].text})
+
+    if dataset_id == "time_qa":
         dataset = TimeQADataset.objects.get(name=dataset_id).questions.filter(
             text=user_query
         )
+        return JsonResponse({"result": dataset[0].answers.all()[0].text})
 
-    if not dataset:
-        return JsonResponse({"result": "No answer found."})
-
-    answer = dataset[0].answers.all()[0].text
-    return JsonResponse({"result": answer})
+    return JsonResponse({"result": "No answer found."})

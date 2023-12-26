@@ -5,7 +5,6 @@ from neomodel import (
     UniqueIdProperty,
     DateProperty,
     RelationshipTo,
-    RelationshipFrom,
 )
 
 
@@ -15,37 +14,21 @@ class HuggingFaceDataset(DjangoNode):
 
 
 class TreeOfKnowledgeDataset(HuggingFaceDataset):
-    instruction = StringProperty()
-    output = StringProperty()
+    question = StringProperty()
+    answer = StringProperty()
 
 
 class HotpotQADataset(HuggingFaceDataset):
     question = StringProperty()
     answer = StringProperty()
-    type = StringProperty()
-    level = StringProperty()
-    supporting_facts = StringProperty()
     context = StringProperty()
 
 
-class WikipediaDataset(HuggingFaceDataset):
-    title = StringProperty()
-    text = StringProperty()
-    url = StringProperty()
-
-
-class ProgrammingBooksLLMOutline(DjangoNode):
+class TimeQAAnswer(DjangoNode):
     value = StringProperty()
 
 
-class ProgrammingBooksLLMADataset(HuggingFaceDataset):
-    topic = StringProperty()
-    outline = RelationshipTo(ProgrammingBooksLLMOutline, "Outline")
-    url = StringProperty()
-
-
-class TimeQA(HuggingFaceDataset):
-    level = StringProperty()
+class TimeQADataset(HuggingFaceDataset):
     question = StringProperty()
-    idx = StringProperty()
+    answers = RelationshipTo(TimeQAAnswer, "Answer")
     context = StringProperty()
