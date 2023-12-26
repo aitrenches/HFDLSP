@@ -130,3 +130,9 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+DATASET_IDS = {
+    "tree_of_knowledge": "fblgit/tree-of-knowledge",
+    "hotpot_qa": "hotpot_qa",
+    "time_qa": "hugosousa/TimeQA",
+}
