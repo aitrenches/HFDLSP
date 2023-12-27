@@ -2,4 +2,5 @@ Django==5.0
 neomodel===5.1.0
 django-neomodel===0.1.1
 datasets==1.13.3
+django-rest-swagger==2.2.0
 gunicorn==21.2.0

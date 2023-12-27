@@ -2,6 +2,10 @@ from django.views.decorators.http import require_GET
 from django.http import JsonResponse, HttpResponseBadRequest
 from data_retriever.models import TimeQADataset, HotpotQADataset, TreeOfKnowledgeDataset
 from HFDLSP.settings import DATASET_IDS
+from rest_framework_swagger.views import get_swagger_view
+
+
+schema_view = get_swagger_view(title="HFDLSP API")
 
 
 @require_GET
