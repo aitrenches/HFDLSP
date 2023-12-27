@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from ...service import fetch_huggingface_dataset, insert_dataset_into_neo4j
-from ...settings import DATASET_IDS
+from HFDLSP.settings import DATASET_IDS
 
 
 class Command(BaseCommand):
@@ -14,13 +14,12 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **kwargs):
-        dataset_name = kwargs["dataset"].lower()
-        dataset_id = DATASET_IDS.get(dataset_name)
+        dataset_id = kwargs["dataset"].lower()
 
-        if not dataset_id:
-            return self.stderr.write(f"No such dataset: {dataset_name}")
+        if not DATASET_IDS.get(dataset_id):
+            return self.stderr.write(f"No such dataset: {dataset_id}")
 
-        self.stdout.write(f"Fetching dataset: {dataset_name}")
+        self.stdout.write(f"Fetching dataset: {dataset_id}")
         try:
             dataset = fetch_huggingface_dataset(dataset_id)
         except Exception as e:
@@ -33,7 +32,7 @@ class Command(BaseCommand):
         if input("").lower() != "y":
             return self.stdout.write(self.style.NOTICE("Operation cancelled."))
 
-        self.stdout.write(f"Inserting dataset: {dataset_name} into Neo4j")
+        self.stdout.write(f"Inserting dataset: {dataset_id} into Neo4j")
 
         try:
             insert_dataset_into_neo4j(dataset_id, dataset)
@@ -42,6 +41,6 @@ class Command(BaseCommand):
 
         self.stdout.write(
             self.style.SUCCESS(
-                f"Successfully fetched and inserted dataset: {dataset_name}"
+                f"Successfully fetched and inserted dataset: {dataset_id}"
             )
         )

@@ -1,6 +1,11 @@
 from django_neomodel import DjangoNode
 from django.utils import timezone
-from neomodel import StringProperty, UniqueIdProperty, DateProperty
+from neomodel import (
+    StringProperty,
+    UniqueIdProperty,
+    DateProperty,
+    RelationshipTo,
+)
 
 
 class HuggingFaceDataset(DjangoNode):
@@ -9,27 +14,21 @@ class HuggingFaceDataset(DjangoNode):
 
 
 class TreeOfKnowledgeDataset(HuggingFaceDataset):
-    instruction = StringProperty()
-    output = StringProperty()
+    question = StringProperty()
+    answer = StringProperty()
 
 
 class HotpotQADataset(HuggingFaceDataset):
     question = StringProperty()
     answer = StringProperty()
-    type = StringProperty()
-    level = StringProperty()
-    supporting_facts = StringProperty()
     context = StringProperty()
 
 
-class WikipediaDataset(HuggingFaceDataset):
-    title = StringProperty()
-    text = StringProperty()
-    url = StringProperty()
+class TimeQAAnswer(DjangoNode):
+    value = StringProperty()
 
 
-class TimeQA(HuggingFaceDataset):
-    level = StringProperty()
+class TimeQADataset(HuggingFaceDataset):
     question = StringProperty()
-    idx = StringProperty()
+    answers = RelationshipTo(TimeQAAnswer, "Answer")
     context = StringProperty()

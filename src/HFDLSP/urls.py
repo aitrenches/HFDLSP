@@ -15,8 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+from rest_framework_swagger.views import get_swagger_view
+from data_transformer.views import answer_view
+
+
+schema_view = get_swagger_view(title="HFDLSP API")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("answer/", answer_view, name="answer"),
+    re_path(r"^$", schema_view),
 ]

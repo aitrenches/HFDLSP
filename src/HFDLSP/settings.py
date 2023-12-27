@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(" ")
 
 # Neo4js Settings
 NEOMODEL_NEO4J_BOLT_URL = os.getenv(
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_neomodel",
+    "rest_framework_swagger",
     "data_retriever",
 ]
 
@@ -130,3 +131,9 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+DATASET_IDS = {
+    "tree_of_knowledge": "fblgit/tree-of-knowledge",
+    "hotpot_qa": "hotpot_qa",
+    "time_qa": "hugosousa/TimeQA",
+}
