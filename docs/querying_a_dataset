@@ -1,9 +1,0 @@
-## Querying a dataset
-
-### Start the server
-
-- To query a server, you need to kickoff by starting the server. To start the server, you can run ``
-
-### Make a request to the answer endpoint
-
-You can get a response by makeing a GET request to `/answer?dataset=dataset-id&query=query` replacing dataset-id with your dataset id and query with your query.
