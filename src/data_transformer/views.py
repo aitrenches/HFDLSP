@@ -2,8 +2,26 @@ from django.views.decorators.http import require_GET
 from django.http import JsonResponse, HttpResponseBadRequest
 from data_retriever.models import TimeQADataset, HotpotQADataset, TreeOfKnowledgeDataset
 from HFDLSP.settings import DATASET_IDS
+from rest_framework.authentication import BaseAuthentication
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
 
+class ApiKeyAuthentication(BaseAuthentication):
+    def authenticate(self, request):
+        api_key = request.META.get('HTTP_API_KEY')
 
+        if not api_key:
+            return None
+
+        # Add your logic to validate the API key
+        valid_api_keys = ['your_api_key_1', 'your_api_key_2']
+        if api_key not in valid_api_keys:
+            raise AuthenticationFailed('Invalid API key')
+
+        return None, None
+
+@authentication_classes([ApiKeyAuthentication])
 @require_GET
 def answer_view(request):
     user_query = request.GET.get("query")

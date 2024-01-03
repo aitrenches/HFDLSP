@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from rest_framework import ISO_8601
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,6 +49,8 @@ INSTALLED_APPS = [
     "django_neomodel",
     "rest_framework_swagger",
     "data_retriever",
+    "rest_framework",
+    "data_transformer",
 ]
 
 MIDDLEWARE = [
@@ -136,4 +140,8 @@ DATASET_IDS = {
     "tree_of_knowledge": "fblgit/tree-of-knowledge",
     "hotpot_qa": "hotpot_qa",
     "time_qa": "hugosousa/TimeQA",
+}
+
+SIMPLE_API_KEY = {
+    "FERNET_SECRET": os.environ.get("FERNET_SECRET"),
 }
