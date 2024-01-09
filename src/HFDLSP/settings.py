@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-from rest_framework import ISO_8601
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_neomodel",
-    "rest_framework_swagger",
-    "data_retriever",
     "rest_framework",
+    "drf_yasg",
+    "data_retriever",
     "data_transformer",
 ]
 
@@ -142,6 +142,3 @@ DATASET_IDS = {
     "time_qa": "hugosousa/TimeQA",
 }
 
-SIMPLE_API_KEY = {
-    "FERNET_SECRET": os.environ.get("FERNET_SECRET"),
-}

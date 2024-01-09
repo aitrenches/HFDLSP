@@ -1,0 +1,227 @@
+Metadata-Version: 2.1
+Name: datasets
+Version: 1.13.3
+Summary: HuggingFace/Datasets is an open library of datasets.
+Home-page: https://github.com/huggingface/datasets
+Author: HuggingFace Inc.
+Author-email: thomas@huggingface.co
+License: Apache 2.0
+Download-URL: https://github.com/huggingface/datasets/tags
+Keywords: datasets machine learning datasets metrics
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.17)
+Requires-Dist: pyarrow (!=4.0.0,>=1.0.0)
+Requires-Dist: dill
+Requires-Dist: pandas
+Requires-Dist: requests (>=2.19.0)
+Requires-Dist: tqdm (>=4.62.1)
+Requires-Dist: xxhash
+Requires-Dist: multiprocess
+Requires-Dist: fsspec[http] (>=2021.05.0)
+Requires-Dist: aiohttp
+Requires-Dist: huggingface-hub (<0.1.0,>=0.0.19)
+Requires-Dist: packaging
+Requires-Dist: dataclasses ; python_version < "3.7"
+Requires-Dist: importlib-metadata ; python_version < "3.8"
+Provides-Extra: apache-beam
+Requires-Dist: apache-beam (>=2.26.0) ; extra == 'apache-beam'
+Provides-Extra: audio
+Requires-Dist: librosa ; extra == 'audio'
+Provides-Extra: benchmarks
+Requires-Dist: numpy (==1.18.5) ; extra == 'benchmarks'
+Requires-Dist: tensorflow (==2.3.0) ; extra == 'benchmarks'
+Requires-Dist: torch (==1.6.0) ; extra == 'benchmarks'
+Requires-Dist: transformers (==3.0.2) ; extra == 'benchmarks'
+Provides-Extra: dev
+Requires-Dist: absl-py ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-datadir ; extra == 'dev'
+Requires-Dist: pytest-xdist ; extra == 'dev'
+Requires-Dist: apache-beam (>=2.26.0) ; extra == 'dev'
+Requires-Dist: elasticsearch ; extra == 'dev'
+Requires-Dist: aiobotocore ; extra == 'dev'
+Requires-Dist: boto3 ; extra == 'dev'
+Requires-Dist: botocore ; extra == 'dev'
+Requires-Dist: fsspec[s3] ; extra == 'dev'
+Requires-Dist: moto[s3,server] (==2.0.4) ; extra == 'dev'
+Requires-Dist: rarfile (>=4.0) ; extra == 'dev'
+Requires-Dist: s3fs (==2021.08.1) ; extra == 'dev'
+Requires-Dist: tensorflow (>=2.3) ; extra == 'dev'
+Requires-Dist: torch ; extra == 'dev'
+Requires-Dist: torchaudio ; extra == 'dev'
+Requires-Dist: transformers ; extra == 'dev'
+Requires-Dist: bs4 ; extra == 'dev'
+Requires-Dist: conllu ; extra == 'dev'
+Requires-Dist: langdetect ; extra == 'dev'
+Requires-Dist: lxml ; extra == 'dev'
+Requires-Dist: mwparserfromhell ; extra == 'dev'
+Requires-Dist: nltk ; extra == 'dev'
+Requires-Dist: openpyxl ; extra == 'dev'
+Requires-Dist: py7zr ; extra == 'dev'
+Requires-Dist: tldextract ; extra == 'dev'
+Requires-Dist: zstandard ; extra == 'dev'
+Requires-Dist: bert-score (>=0.3.6) ; extra == 'dev'
+Requires-Dist: rouge-score ; extra == 'dev'
+Requires-Dist: sacrebleu ; extra == 'dev'
+Requires-Dist: scipy ; extra == 'dev'
+Requires-Dist: seqeval ; extra == 'dev'
+Requires-Dist: scikit-learn ; extra == 'dev'
+Requires-Dist: jiwer ; extra == 'dev'
+Requires-Dist: sentencepiece ; extra == 'dev'
+Requires-Dist: toml (>=0.10.1) ; extra == 'dev'
+Requires-Dist: requests-file (>=1.5.1) ; extra == 'dev'
+Requires-Dist: tldextract (>=3.1.0) ; extra == 'dev'
+Requires-Dist: texttable (>=1.6.3) ; extra == 'dev'
+Requires-Dist: Werkzeug (>=1.0.1) ; extra == 'dev'
+Requires-Dist: six (~=1.15.0) ; extra == 'dev'
+Requires-Dist: black (==21.4b0) ; extra == 'dev'
+Requires-Dist: flake8 (==3.7.9) ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: pyyaml (>=5.3.1) ; extra == 'dev'
+Requires-Dist: importlib-resources ; (python_version < "3.7") and extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: docutils (==0.16.0) ; extra == 'docs'
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: sphinx (==3.1.2) ; extra == 'docs'
+Requires-Dist: sphinx-markdown-tables ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme (==0.4.3) ; extra == 'docs'
+Requires-Dist: sphinxext-opengraph (==0.4.1) ; extra == 'docs'
+Requires-Dist: sphinx-copybutton ; extra == 'docs'
+Requires-Dist: fsspec (<2021.9.0) ; extra == 'docs'
+Requires-Dist: s3fs ; extra == 'docs'
+Requires-Dist: sphinx-panels ; extra == 'docs'
+Requires-Dist: sphinx-inline-tabs ; extra == 'docs'
+Requires-Dist: myst-parser ; extra == 'docs'
+Provides-Extra: quality
+Requires-Dist: black (==21.4b0) ; extra == 'quality'
+Requires-Dist: flake8 (==3.7.9) ; extra == 'quality'
+Requires-Dist: isort ; extra == 'quality'
+Requires-Dist: pyyaml (>=5.3.1) ; extra == 'quality'
+Provides-Extra: s3
+Requires-Dist: fsspec ; extra == 's3'
+Requires-Dist: boto3 ; extra == 's3'
+Requires-Dist: botocore ; extra == 's3'
+Requires-Dist: s3fs ; extra == 's3'
+Provides-Extra: streaming
+Provides-Extra: tensorflow
+Requires-Dist: tensorflow (>=2.2.0) ; extra == 'tensorflow'
+Provides-Extra: tensorflow_gpu
+Requires-Dist: tensorflow-gpu (>=2.2.0) ; extra == 'tensorflow_gpu'
+Provides-Extra: tests
+Requires-Dist: absl-py ; extra == 'tests'
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-datadir ; extra == 'tests'
+Requires-Dist: pytest-xdist ; extra == 'tests'
+Requires-Dist: apache-beam (>=2.26.0) ; extra == 'tests'
+Requires-Dist: elasticsearch ; extra == 'tests'
+Requires-Dist: aiobotocore ; extra == 'tests'
+Requires-Dist: boto3 ; extra == 'tests'
+Requires-Dist: botocore ; extra == 'tests'
+Requires-Dist: fsspec[s3] ; extra == 'tests'
+Requires-Dist: moto[s3,server] (==2.0.4) ; extra == 'tests'
+Requires-Dist: rarfile (>=4.0) ; extra == 'tests'
+Requires-Dist: s3fs (==2021.08.1) ; extra == 'tests'
+Requires-Dist: tensorflow (>=2.3) ; extra == 'tests'
+Requires-Dist: torch ; extra == 'tests'
+Requires-Dist: torchaudio ; extra == 'tests'
+Requires-Dist: transformers ; extra == 'tests'
+Requires-Dist: bs4 ; extra == 'tests'
+Requires-Dist: conllu ; extra == 'tests'
+Requires-Dist: langdetect ; extra == 'tests'
+Requires-Dist: lxml ; extra == 'tests'
+Requires-Dist: mwparserfromhell ; extra == 'tests'
+Requires-Dist: nltk ; extra == 'tests'
+Requires-Dist: openpyxl ; extra == 'tests'
+Requires-Dist: py7zr ; extra == 'tests'
+Requires-Dist: tldextract ; extra == 'tests'
+Requires-Dist: zstandard ; extra == 'tests'
+Requires-Dist: bert-score (>=0.3.6) ; extra == 'tests'
+Requires-Dist: rouge-score ; extra == 'tests'
+Requires-Dist: sacrebleu ; extra == 'tests'
+Requires-Dist: scipy ; extra == 'tests'
+Requires-Dist: seqeval ; extra == 'tests'
+Requires-Dist: scikit-learn ; extra == 'tests'
+Requires-Dist: jiwer ; extra == 'tests'
+Requires-Dist: sentencepiece ; extra == 'tests'
+Requires-Dist: toml (>=0.10.1) ; extra == 'tests'
+Requires-Dist: requests-file (>=1.5.1) ; extra == 'tests'
+Requires-Dist: tldextract (>=3.1.0) ; extra == 'tests'
+Requires-Dist: texttable (>=1.6.3) ; extra == 'tests'
+Requires-Dist: Werkzeug (>=1.0.1) ; extra == 'tests'
+Requires-Dist: six (~=1.15.0) ; extra == 'tests'
+Requires-Dist: importlib-resources ; (python_version < "3.7") and extra == 'tests'
+Provides-Extra: torch
+Requires-Dist: torch ; extra == 'torch'
+
+Note:
+
+   VERSION needs to be formatted following the MAJOR.MINOR.PATCH convention
+   (we need to follow this convention to be able to retrieve versioned scripts)
+
+Simple check list for release from AllenNLP repo: https://github.com/allenai/allennlp/blob/master/setup.py
+
+To create the package for pypi.
+
+0. Prerequisites:
+   - Dependencies:
+     - twine: "pip install twine"
+   - Create an account in (and join the 'datasets' project):
+     - PyPI: https://pypi.org/
+     - Test PyPI: https://test.pypi.org/
+
+1. Change the version in:
+   - __init__.py
+   - setup.py
+   - docs/source/conf.py
+
+2. Commit these changes: "git commit -m 'Release: VERSION'"
+
+3. Add a tag in git to mark the release: "git tag VERSION -m 'Add tag VERSION for pypi'"
+   Push the tag to remote: git push --tags origin master
+
+4. Build both the sources and the wheel. Do not change anything in setup.py between
+   creating the wheel and the source distribution (obviously).
+
+   First, delete any "build" directory that may exist from previous builds.
+
+   For the wheel, run: "python setup.py bdist_wheel" in the top level directory.
+   (this will build a wheel for the python version you use to build it).
+
+   For the sources, run: "python setup.py sdist"
+   You should now have a /dist directory with both .whl and .tar.gz source versions.
+
+5. Check that everything looks correct by uploading the package to the pypi test server:
+
+   twine upload dist/* -r pypitest --repository-url=https://test.pypi.org/legacy/
+
+   Check that you can install it in a virtualenv/notebook by running:
+   pip install huggingface_hub fsspec aiohttp
+   pip install -U tqdm
+   pip install -i https://testpypi.python.org/pypi datasets
+
+6. Upload the final version to actual pypi:
+   twine upload dist/* -r pypi
+
+7. Fill release notes in the tag in github once everything is looking hunky-dory.
+
+8. Update the documentation commit in .circleci/deploy.sh for the accurate documentation to be displayed.
+   Update the version mapping in docs/source/_static/js/custom.js with: "python utils/release.py --version VERSION"
+   Set version to X.X.X+1.dev0 (e.g. 1.8.0 -> 1.8.1.dev0) in:
+   - setup.py
+   - __init__.py
+
+9. Commit these changes: "git commit -m 'Release docs'"
+   Push the commit to remote: "git push origin master"
+
+
