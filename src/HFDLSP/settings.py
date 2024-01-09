@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_neomodel",
     "rest_framework",
-    "drf_yasg",
     "data_retriever",
     "data_transformer",
 ]
