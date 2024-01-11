@@ -26,15 +26,14 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
-#DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(" ")
 #ALLOWED_HOSTS = ["*"]
 
 # Neo4js Settings
 NEOMODEL_NEO4J_BOLT_URL = os.getenv(
-    "NEO4J_DATABASE_URL", "bolt:user:password//@localhost:7687"
-    #"NEO4J_DATABASE_URL", "bolt://neo4j:1FEmGbOfoEH_YlciVNUgAaB3LpHLuP0lUIn5VYb457A@localhost:7687"
+    "NEO4J_DATABASE_URL", "bolt:localhost:7687"
+    #"NEO4J_DATABASE_URL", "bolt://neo4j:1FEmGbOfoEH_YlciVNUgAaB3LpHLuP0lUIn5VYb457A@127.0.0.1:7687"
 )  # Update with your Neo4j URL
 
 
