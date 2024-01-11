@@ -21,18 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
 SECRET_KEY = os.environ.get("SECRET_KEY")
-# SECRET_KEY = 1234455#$%$^&*(
+#SECRET_KEY = 1234455#$%$^&*(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
+#DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(" ")
+#ALLOWED_HOSTS = ["*"]
 
 # Neo4js Settings
 NEOMODEL_NEO4J_BOLT_URL = os.getenv(
-    "NEO4J_DATABASE_URL", "bolt://localhost:7687"
+    "NEO4J_DATABASE_URL", "bolt:user:password//@localhost:7687"
+    #"NEO4J_DATABASE_URL", "bolt://neo4j:1FEmGbOfoEH_YlciVNUgAaB3LpHLuP0lUIn5VYb457A@localhost:7687"
 )  # Update with your Neo4j URL
 
 
