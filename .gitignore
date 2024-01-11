@@ -2,4 +2,4 @@
 **/__pycache__/
 aitrenches-env/
 .env
-.venv
+venv/

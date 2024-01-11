@@ -2,16 +2,9 @@ from django.views.decorators.http import require_GET
 from django.http import JsonResponse, HttpResponseBadRequest
 from data_retriever.models import TimeQADataset, HotpotQADataset, TreeOfKnowledgeDataset
 from HFDLSP.settings import DATASET_IDS
-from rest_framework.views import APIView
-from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from .authentication.custom_auth import ApiKeyAuthentication
-from .utils.api_key_utils import generate_api_key
 
-@authentication_classes([ApiKeyAuthentication])
-@permission_classes([IsAuthenticated])
+@require_GET
 def answer_view(request):
-    new_api_key = generate_api_key()
     user_query = request.GET.get("query")
     dataset_id = request.GET.get("dataset")
 
