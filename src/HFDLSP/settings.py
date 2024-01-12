@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,18 +25,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
-#SECRET_KEY = 1234455#$%$^&*(
+# SECRET_KEY = "f15863e7818b1ebd"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(" ")
-#ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
 
 # Neo4js Settings
 NEOMODEL_NEO4J_BOLT_URL = os.getenv(
     "NEO4J_DATABASE_URL", "bolt:localhost:7687"
-    #"NEO4J_DATABASE_URL", "bolt://neo4j:1FEmGbOfoEH_YlciVNUgAaB3LpHLuP0lUIn5VYb457A@127.0.0.1:7687"
+    # "NEO4J_DATABASE_URL", "bolt://neo4j:1FEmGbOfoEH_YlciVNUgAaB3LpHLuP0lUIn5VYb457A@127.0.0.1:7687"
 )  # Update with your Neo4j URL
 
 
@@ -140,4 +143,3 @@ DATASET_IDS = {
     "hotpot_qa": "hotpot_qa",
     "time_qa": "hugosousa/TimeQA",
 }
-
