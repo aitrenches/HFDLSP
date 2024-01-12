@@ -25,6 +25,5 @@ schema_view = get_swagger_view(title="HFDLSP API")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("answer/", answer_view, name="answer"),
-    path("fetch_dataset/<str:dataset_name>/", fetch_dataset_from_neo4j, name="fetch_dataset"),
     re_path(r"^$", schema_view),
 ]

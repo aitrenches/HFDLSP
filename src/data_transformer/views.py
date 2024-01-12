@@ -45,35 +45,4 @@ def answer_view(request):
         return JsonResponse({"error": "An unknown error occurred."})
 
 
-@require_GET
-def fetch_dataset_from_neo4j(request, dataset_name):
-    user_query = request.GET.get("query")
 
-    try:
-        if not user_query or not dataset_name:
-            return HttpResponseBadRequest({"error": "No query provided."})
-
-        timeQADataset = TimeQADataset.nodes.first_or_none(question=user_query)
-        result_time = TimeQADataset.answers.value if timeQADataset else None
-
-        if result_time:
-            return JsonResponse({"result": result_time})
-
-        hotpotQADataset = HotpotQADataset.nodes.first_or_none(
-            question=user_query)
-        result_hotpot = HotpotQADataset.answer if hotpotQADataset else None
-
-        if result_hotpot:
-            return JsonResponse({"result": result_hotpot})
-
-        treeOfKnowledgeDataset = TreeOfKnowledgeDataset.nodes.first_or_none(
-            question=user_query)
-        result_tree = TreeOfKnowledgeDataset.answer if treeOfKnowledgeDataset else None
-
-        if result_tree:
-            return JsonResponse({"result": result_tree})
-
-        return JsonResponse({"result": "No answer found."})
-    except Exception as e:
-        print(e)
-        return JsonResponse({"error": "An unknown error occurred."})
