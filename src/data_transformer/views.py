@@ -57,7 +57,7 @@ def fetch_dataset_from_huggingface(request, dataset_id):
         if not api_key:
             return JsonResponse({"error": "API key is missing"}, status=401)
 
-         if not validate_api_key(api_key):
+        if not validate_api_key(api_key):
             return JsonResponse({"error": "Invalid API key"}, status=401)
 
         huggingface_dataset = fetch_huggingface_dataset(dataset_id)
@@ -73,8 +73,10 @@ def fetch_dataset_from_huggingface(request, dataset_id):
         print(e)
         return JsonResponse({"error": "An unknown error occurred."})
 
+
 def validate_api_key(api_key):
     return api_key == os.getenv("SECRET_KEY")
+
 
 def process_dataset(huggingface_dataset, dataset_name):
     if dataset_name == "tree_of_knowledge":
