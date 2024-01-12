@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework_swagger.views import get_swagger_view
-from data_transformer.views import answer_view
+from data_transformer.views import answer_view, fetch_dataset_from_neo4j
 
 
 schema_view = get_swagger_view(title="HFDLSP API")
@@ -25,5 +25,6 @@ schema_view = get_swagger_view(title="HFDLSP API")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("answer/", answer_view, name="answer"),
+    path("fetch_dataset/<str:dataset_name>/", fetch_dataset_from_neo4j, name="fetch_dataset"),
     re_path(r"^$", schema_view),
 ]
