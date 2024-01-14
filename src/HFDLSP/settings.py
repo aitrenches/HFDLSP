@@ -148,13 +148,17 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "The official API documentation for HFDLSP.",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": True,
-    "SECURITY_DEFINITIONS": {
-        "api_key": {
-            "type": "apiKey",
-            "in": "header",
-            "name": "Authorization",
-        },
+    "EXTENSIONS": ["HFDLSP.extensions.CustomOpenApiAuthenticationExtension"],
+    "APPEND_COMPONENTS": {
+        "securitySchemes": {
+            "ApiKeyAuth": {"type": "apiKey", "in": "header", "name": "Authorization"}
+        }
     },
+    "SECURITY": [
+        {
+            "ApiKeyAuth": [],
+        }
+    ],
 }
 
 DATASET_IDS = {
