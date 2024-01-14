@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-from rest_framework import ISO_8601
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
@@ -32,7 +31,7 @@ DEBUG = bool(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(" ")
 
 # Neo4js Settings
-NEOMODEL_NEO4J_BOLT_URL = os.getenv(
+NEOMODEL_NEO4J_BOLT_URL = os.environ.get(
     "NEO4J_DATABASE_URL", "bolt://localhost:7687"
 )  # Update with your Neo4j URL
 
@@ -47,9 +46,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_neomodel",
-    "rest_framework_swagger",
-    "data_retriever",
     "rest_framework",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
+    "data_retriever",
     "data_transformer",
 ]
 
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # "HFDLSP.middleware.AuthMiddleware",
 ]
 
 ROOT_URLCONF = "HFDLSP.urls"
@@ -136,12 +137,32 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+API_KEY = os.environ.get("API_KEY")
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "HFDLSP API",
+    "DESCRIPTION": "The official API documentation for HFDLSP.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": True,
+    "EXTENSIONS": ["HFDLSP.extensions.CustomOpenApiAuthenticationExtension"],
+    "APPEND_COMPONENTS": {
+        "securitySchemes": {
+            "ApiKeyAuth": {"type": "apiKey", "in": "header", "name": "Authorization"}
+        }
+    },
+    "SECURITY": [
+        {
+            "ApiKeyAuth": [],
+        }
+    ],
+}
+
 DATASET_IDS = {
     "tree_of_knowledge": "fblgit/tree-of-knowledge",
     "hotpot_qa": "hotpot_qa",
     "time_qa": "hugosousa/TimeQA",
-}
-
-SIMPLE_API_KEY = {
-    "FERNET_SECRET": os.environ.get("FERNET_SECRET"),
 }

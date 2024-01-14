@@ -1,6 +1,6 @@
-from datasets import load_dataset
+import datasets
 from neomodel import db
-from .models import (
+from HFDLSP.models import (
     TreeOfKnowledgeDataset,
     HotpotQADataset,
     TimeQADataset,
@@ -12,13 +12,13 @@ from HFDLSP.settings import DATASET_IDS
 def fetch_huggingface_dataset(dataset_id):
     dataset_name = DATASET_IDS.get(dataset_id)
     if dataset_id == "tree_of_knowledge":
-        return load_dataset(dataset_name, split="train")
+        return datasets.load_dataset(dataset_name, split="train")
 
     if dataset_id == "hotpot_qa":
-        return load_dataset(dataset_name, "distractor", split="train")
+        return datasets.load_dataset(dataset_name, "distractor", split="train")
 
     if dataset_id == "time_qa":
-        return load_dataset(dataset_name, split="train")
+        return datasets.load_dataset(dataset_name, split="train")
 
 
 def insert_dataset_into_neo4j(dataset_id, dataset):
@@ -27,7 +27,7 @@ def insert_dataset_into_neo4j(dataset_id, dataset):
             for data in dataset:
                 TreeOfKnowledgeDataset.create(
                     {
-                        "question": data["instruction"],
+                        "question": data["instruction"].lower(),
                         "answer": data["output"],
                     }
                 )
@@ -37,7 +37,7 @@ def insert_dataset_into_neo4j(dataset_id, dataset):
             for data in dataset:
                 HotpotQADataset.create(
                     {
-                        "question": data["question"],
+                        "question": data["question"].lower(),
                         "answer": data["answer"],
                         "context": data["context"],
                     }
@@ -48,7 +48,7 @@ def insert_dataset_into_neo4j(dataset_id, dataset):
             for data in dataset:
                 TimeQADataset.create(
                     {
-                        "question": data["question"],
+                        "question": data["question"].lower(),
                         "answer": data["targets"],
                         "context": data["context"],
                     }

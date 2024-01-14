@@ -1,30 +1,73 @@
-from django.views.decorators.http import require_GET
 from django.http import JsonResponse, HttpResponseBadRequest
-from data_retriever.models import TimeQADataset, HotpotQADataset, TreeOfKnowledgeDataset
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
+from rest_framework.decorators import api_view
+from HFDLSP.decorators import api_key_auth
 from HFDLSP.settings import DATASET_IDS
-from rest_framework.authentication import BaseAuthentication
-from rest_framework.exceptions import AuthenticationFailed
-from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from .service import fetch_dataset_answer_by_question
 
-class ApiKeyAuthentication(BaseAuthentication):
-    def authenticate(self, request):
-        api_key = request.META.get('HTTP_API_KEY')
 
-        if not api_key:
-            return None
-
-        # Add your logic to validate the API key
-        valid_api_keys = ['your_api_key_1', 'your_api_key_2']
-        if api_key not in valid_api_keys:
-            raise AuthenticationFailed('Invalid API key')
-
-        return None, None
-
-@authentication_classes([ApiKeyAuthentication])
-@require_GET
+@extend_schema(
+    description="Get an answer to a question from a dataset.",
+    methods=["GET"],
+    parameters=[
+        OpenApiParameter(
+            name="query",
+            description="The query/question you want to get an answer to.",
+            required=True,
+            type=str,
+            location=OpenApiParameter.QUERY,
+            examples=[
+                OpenApiExample(
+                    "Example 1",
+                    value="explain chemistry",
+                ),
+            ],
+        ),
+        OpenApiParameter(
+            name="dataset",
+            description="The ID of the dataset to query as specified in the app.",
+            required=True,
+            type=str,
+            location=OpenApiParameter.QUERY,
+            examples=[
+                OpenApiExample(
+                    "Example 1",
+                    value="tree_of_knowledge",
+                ),
+            ],
+        ),
+    ],
+    responses={
+        200: {
+            "properties": {
+                "result": {
+                    "type": "string",
+                    "description": "The string containing the answer to the query.",
+                },
+            },
+        },
+        500: {
+            "properties": {
+                "error": {
+                    "type": "string",
+                    "description": "The error that occured while trying to fetch the answer to the query.",
+                },
+            },
+        },
+        400: {
+            "properties": {
+                "error": {
+                    "type": "string",
+                    "description": "The error that occured as a result of a bad input.",
+                },
+            },
+        },
+    },
+)
+@api_key_auth
+@api_view(["GET"])
 def answer_view(request):
-    user_query = request.GET.get("query")
+    user_query = request.GET.get("query").lower()
     dataset_id = request.GET.get("dataset")
 
     try:
@@ -35,27 +78,11 @@ def answer_view(request):
         if not DATASET_IDS.get(dataset_id):
             return HttpResponseBadRequest({"error": "The dataset ID is invalid."})
 
-        result = None
-        if dataset_id == "tree_of_knowledge":
-            dataset = TreeOfKnowledgeDataset.nodes.first_or_none(question=user_query)
-            result = dataset.answer if dataset else None
+        result = fetch_dataset_answer_by_question(dataset_id, user_query)
 
-        if dataset_id == "hotpot_qa":
-            dataset = HotpotQADataset.nodes.first_or_none(question=user_query)
-            result = dataset.answer if dataset else None
-
-        if dataset_id == "time_qa":
-            dataset = (
-                TimeQADataset.nodes.first_or_none(question=user_query)
-                .fetch_relations("answers")
-                .answers.first_or_none()
-            )
-            result = dataset.value if dataset else None
-
-        if result:
-            return JsonResponse({"result": result})
-
-        return JsonResponse({"result": "No answer found."})
+        if not result:
+            return JsonResponse({"result": "No answer found."})
+        return JsonResponse({"result": result})
     except Exception as e:
         print(e)
         return JsonResponse({"error": "An unknown error occurred."})
