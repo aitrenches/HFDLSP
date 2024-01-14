@@ -60,6 +60,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "HFDLSP.middleware.AuthMiddleware",
 ]
 
 ROOT_URLCONF = "HFDLSP.urls"
