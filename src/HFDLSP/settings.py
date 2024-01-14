@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-from rest_framework import ISO_8601
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", default=0))
@@ -32,7 +31,7 @@ DEBUG = bool(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(" ")
 
 # Neo4js Settings
-NEOMODEL_NEO4J_BOLT_URL = os.getenv(
+NEOMODEL_NEO4J_BOLT_URL = os.environ.get(
     "NEO4J_DATABASE_URL", "bolt://localhost:7687"
 )  # Update with your Neo4j URL
 
@@ -142,6 +141,4 @@ DATASET_IDS = {
     "time_qa": "hugosousa/TimeQA",
 }
 
-SIMPLE_API_KEY = {
-    "FERNET_SECRET": os.environ.get("FERNET_SECRET"),
-}
+API_KEY = os.environ.get("API_KEY")
