@@ -51,7 +51,7 @@ class InsertDatasetIntoNeo4jTest(TestCase):
         self.assertIsNone(insert_dataset_into_neo4j(dataset_id, dataset))
         mock_model.assert_called_once_with(
             {
-                "question": dataset[0]["question"],
+                "question": dataset[0]["question"].lower(),
                 "answer": dataset[0]["answer"],
                 "context": dataset[0]["context"],
             }

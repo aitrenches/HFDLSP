@@ -46,9 +46,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_neomodel",
-    "rest_framework_swagger",
-    "data_retriever",
     "rest_framework",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
+    "data_retriever",
     "data_transformer",
 ]
 
@@ -60,7 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "HFDLSP.middleware.AuthMiddleware",
+    # "HFDLSP.middleware.AuthMiddleware",
 ]
 
 ROOT_URLCONF = "HFDLSP.urls"
@@ -136,10 +137,28 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+API_KEY = os.environ.get("API_KEY")
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "HFDLSP API",
+    "DESCRIPTION": "The official API documentation for HFDLSP.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": True,
+    "SECURITY_DEFINITIONS": {
+        "api_key": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "Authorization",
+        },
+    },
+}
+
 DATASET_IDS = {
     "tree_of_knowledge": "fblgit/tree-of-knowledge",
     "hotpot_qa": "hotpot_qa",
     "time_qa": "hugosousa/TimeQA",
 }
-
-API_KEY = os.environ.get("API_KEY")
