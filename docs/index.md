@@ -36,7 +36,7 @@ Users seamlessly integrate their Neo4j database instance by configuring it as an
 #### Python (Django): 
 - The backbone of the web application, providing a robust and scalable framework.
 
-#### Neo4j with Cypher: 
+#### Neo4j with Cypher : 
 - Chosen as the graph database to efficiently store and query datasets, ensuring optimal performance. Cypher Shell is a command-line tool that comes with the Neo4j distribution. Cypher is an open-source, property-graph query language designed for querying graph databases. It uses a declarative syntax to express complex queries in a concise and readable way.
 
 #### Huggingface Dataset Python Library:
