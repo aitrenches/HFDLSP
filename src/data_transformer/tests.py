@@ -30,3 +30,23 @@ class FetchDatasetAnswerByQuestionTest(TestCase):
 
         self.assertEqual(result, self.dataset.answer)
         mock_nodes.first_or_none.assert_called_once_with(question="what is biology")
+
+
+class FetchDatasetAnswerByQuestionIntegrationTest(TestCase):
+    def setUp(self):
+        self.dataset = HotpotQADataset.objects.create(
+            question="what is biology",
+            answer="Biology is a branch of science",
+            context="A question about biology",
+        )
+
+    def test_invalid_dataset(self):
+        self.assertIsNone(fetch_dataset_answer_by_question("Invalid ID", "question"))
+
+    def test_no_dataset_with_question(self):
+        result = fetch_dataset_answer_by_question("hotpot_qa", "nonexistent question")
+        self.assertIsNone(result)
+
+    def test_valid_dataset(self):
+        result = fetch_dataset_answer_by_question("hotpot_qa", "what is biology")
+        self.assertEqual(result, self.dataset.answer)
