@@ -33,16 +33,16 @@ Users seamlessly integrate their Neo4j database instance by configuring it as an
 ### Technologies
 - The project leverages cutting-edge technologies to create a powerful and user-centric solution:
 
-#### Python (Django): 
+#### Python (Django):
 - The backbone of the web application, providing a robust and scalable framework.
 
-#### Neo4j with Cypher: 
+#### Neo4j with Cypher:
 - Chosen as the graph database to efficiently store and query datasets, ensuring optimal performance. Cypher Shell is a command-line tool that comes with the Neo4j distribution. Cypher is an open-source, property-graph query language designed for querying graph databases. It uses a declarative syntax to express complex queries in a concise and readable way.
 
 #### Huggingface Dataset Python Library:
 - Enables smooth interaction with the Hugging Face data platform, simplifying the retrieval and integration of datasets.
 
-#### Logging Python Library: 
+#### Logging Python Library:
 - Facilitates the development of a flexible error logging system, offering users the flexibility to integrate their preferred logging service seamlessly.
 
 ## Links
