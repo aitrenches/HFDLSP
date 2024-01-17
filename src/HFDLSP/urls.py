@@ -19,8 +19,10 @@ from django.urls import path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from data_transformer.views import answer_view
 from data_retriever.views import fetch_dataset_view
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='https://aitrenches.github.io/HFDLSP/'), name='redirect-to-target'),
     path("admin/", admin.site.urls),
     path("answer/", answer_view, name="answer"),
     path("fetch_dataset/", fetch_dataset_view, name="fetch_dataset"),
