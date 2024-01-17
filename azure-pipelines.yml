@@ -60,7 +60,7 @@ stages:
         displayName: Install Requirements
       - task: CmdLine@2
         inputs:
-          script: 'flake8 --ignore=E501,F401,E203 src/.'
+          script: 'flake8 --ignore=E501,F401 src/.'
           failOnStderr: true
         displayName: Run Linter
       - task: CmdLine@2
