@@ -1,0 +1,2 @@
+- AWS and EC2 setup: Step-by-step guide on deploying the application on AWS EC2.
+- CI/CD Pipeline: Details about the CI/CD setup using Azure Pipelines, including pipeline configuration and deployment strategies.

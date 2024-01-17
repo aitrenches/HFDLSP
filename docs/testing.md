@@ -1,0 +1,2 @@
+- Testing strategies: Overview of the testing approach, including unit and integration testing.
+- Test cases: Detailed description of important test cases and how to run tests.

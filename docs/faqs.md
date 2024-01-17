@@ -1,0 +1,1 @@
+- Frequently asked questions about the application, its usage, and any common technical queries.

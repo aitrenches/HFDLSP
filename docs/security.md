@@ -1,0 +1,2 @@
+- Security practices: Explanation of security measures implemented in the application, including data encryption, secure API design, etc.
+- Vulnerability management: How vulnerabilities are identified and managed.

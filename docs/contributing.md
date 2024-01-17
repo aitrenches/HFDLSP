@@ -1,0 +1,1 @@
+- Guidelines for contributing to the project, including how to submit pull requests and report bugs.

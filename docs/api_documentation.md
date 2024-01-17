@@ -1,0 +1,3 @@
+- Authentication: Details on the API key authentication mechanism and how to obtain/use an API key.
+- Endpoints: Comprehensive list of all API endpoints, with methods (GET, POST, etc.), expected request parameters, and sample responses.
+- Error handling: Explanation of error responses and status codes.

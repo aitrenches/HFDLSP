@@ -1,0 +1,2 @@
+- High-level architecture: Diagrams and descriptions of the system architecture, including the backend, frontend, and any external services.
+- Database schema: Details about the database design, including entity relationships.
