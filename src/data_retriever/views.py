@@ -10,7 +10,7 @@ from .service import fetch_huggingface_dataset, insert_dataset_into_neo4j
     parameters=[
         OpenApiParameter(
             name="dataset",
-            description="The ID of the dataset to import from HuggingFace to the Neo4j database.",
+            description="The ID of the dataset to import from HuggingFace to the Neo4j database..",
             required=True,
             type=str,
             location=OpenApiParameter.QUERY,
