@@ -82,7 +82,8 @@ def answer_view(request):
 
         if not result:
             return JsonResponse({"result": "No answer found."})
-        return JsonResponse({"result": result})
+        return JsonResponse({"query": user_query,
+                             "result": result})
     except Exception as e:
         print(e)
         return JsonResponse({"error": "An unknown error occurred."})
