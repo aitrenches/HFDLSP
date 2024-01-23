@@ -1,12 +1,12 @@
 - Testing strategies: Overview of the testing approach, including unit and integration testing.
 - Test cases: Detailed description of important test cases and how to run tests.
 
-Testing Approach
+### Testing Approach
 Unit Testing: Focuses on testing the fetch_dataset_answer_by_question function in isolation. Mocking is used to simulate the behavior of the HotpotQADataset model to ensure that tests are not dependent on the database or external factors.
 
 Integration Testing: Ensures that the fetch_dataset_answer_by_question function interacts correctly with the HotpotQADataset model and the database. This tests the function in a scenario that is close to its real usage within the application.
 
-Test Environment Setup
+### Test Environment Setup
 Ensure Django is installed and configured correctly.
 The test cases are written using Django’s built-in TestCase class.
 For unit tests, the unittest.mock library is used for mocking.
@@ -15,10 +15,9 @@ Tests can be run using the Django test runner.
 
 Execute the following command in the terminal from the root of the Django project:
 
-### python manage.py test
+`python manage.py test`
 
 
-Test Cases
 
 ### Unit Tests
 ### Test Invalid Dataset:
