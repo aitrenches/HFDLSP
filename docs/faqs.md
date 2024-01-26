@@ -5,10 +5,10 @@
 ## General Usage
 
 ### Q1: What is the primary purpose of this application?
-**A:** The application is designed to provide answers from the `HotpotQADataset` based on user-submitted questions. It's a tool for querying a dataset to retrieve specific information related to question-answering tasks.
+**A:** The application is designed to provide answers from the `HuggingFaceDataset` based on user-submitted questions. It's a tool for querying a dataset to retrieve specific information related to question-answering tasks.
 
 ### Q2: How do I submit a question to the application?
-**A:** Questions can be submitted through the application's user interface, typically through a search bar or query field. Enter your question and submit it to receive an answer.
+**A:** Questions can be submitted through the application's user interface, typically through an API. Enter your question and submit it to receive an answer.
 
 ### Q3: Is there a limit to the number of questions I can ask?
 **A:** Generally, there is no set limit. However, usage may be subject to fair use policies to ensure stable performance for all users.
@@ -16,10 +16,10 @@
 ## Technical Queries
 
 ### Q1: What technologies does the application use?
-**A:** The application is built using Django, a high-level Python web framework. It relies on the `HotpotQADataset` model for data storage and retrieval.
+**A:** The application is built using Django, a high-level Python web framework. It relies on the `HuggingFaceDataset` model for data storage and retrieval.
 
 ### Q2: How is data stored in the application?
-**A:** Data is stored in the `HotpotQADataset` model, which is part of the application's database. It includes fields for the question, answer, and additional context.
+**A:** Data is stored in the `HuggingFaceDataset` model, which is part of the application's database. It includes fields for the question, answer, and additional context.
 
 ### Q3: Can I access the application offline?
 **A:** No, the application requires an internet connection to access the dataset and retrieve answers to questions.
